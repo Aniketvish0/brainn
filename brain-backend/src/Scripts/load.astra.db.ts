@@ -24,7 +24,7 @@ const splitter = new RecursiveCharacterTextSplitter({
     chunkOverlap: 100
 });
 
-const createCollection = async (similarityMatrics: SimilarityMatrics = "dot_product") => {
+export const createCollection = async (similarityMatrics: SimilarityMatrics = "dot_product") => {
     const res = await db.createCollection(ASTRA_DB_COLLECTION!, {
         vector: {
             dimension: 768,
@@ -34,7 +34,7 @@ const createCollection = async (similarityMatrics: SimilarityMatrics = "dot_prod
     console.log("Collection created:", res);
 };
 
-const loadChatData = async () => {
+export const loadChatData = async () => {
     const collection = await db.collection(ASTRA_DB_COLLECTION!);
     const rawData = fs.readFileSync("app/scripts/parsed_chat.json", "utf-8");
     const chatData = JSON.parse(rawData);
@@ -64,7 +64,4 @@ const loadChatData = async () => {
     }
 };
 
-(async () => {
-    await createCollection();
-    await loadChatData();
-})();
+

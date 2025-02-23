@@ -5,7 +5,6 @@ import { ApiError } from "../utils/ApiError";
 import { ApiResponse } from "../utils/ApiResponse";
 import { generateTokens } from "../utils/generateToken";
 import { AuthRequest } from "../utils/types/Auth";
-import { sign } from "jsonwebtoken";
 
 const handleUserSignup = asyncHandler(async (req: AuthRequest, res: Response) => {
     try {
@@ -79,7 +78,7 @@ const handleUserSignin = asyncHandler(async (req: AuthRequest, res: Response) =>
             secure: true,
             maxAge: 30 * 24 * 60 * 60 * 1000, //30 days
         };
-        
+
         res.cookie("accessToken", accessToken, options);
         res.cookie("refreshToken", refreshToken, options);
         return res.status(200).json(
