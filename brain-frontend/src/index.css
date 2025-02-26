@@ -3,13 +3,112 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --animate-spin-once: spin-once 0.3s ease-in-out;
+  --background: rgb(250 250 250); 
+  --foreground: rgb(10 10 10); 
+  
+  --primary: rgb(59 130 246);  
+  --primary-foreground: white;
+  
+  --secondary: rgb(15 17 23); 
+  --secondary-foreground: white;
+  
+  --card: white;
+  --card-foreground: rgb(23 23 23); 
+  
+  --popover: white;
+  --popover-foreground: rgb(23 23 23); 
+  
+  --muted: rgb(245 245 245); 
+  --muted-foreground: rgb(115 115 115); 
+  
+  --accent: rgb(243 244 246);  
+  --accent-foreground: rgb(17 24 39); 
+  
+  --destructive: rgb(239 68 68); 
+  --destructive-foreground: white;
+  
+  --border: rgb(229 229 229); 
+  --input: rgb(229 229 229);  
+  --ring: rgb(23 23 23);  
+
+  --animate-spin-once: spin-once 0.5s ease-in-out;
   @keyframes spin-once {
     0% {
-      transform: rotate(-60deg); 
+      transform: rotate(-90deg); 
     }
     100% {
       transform: rotate(0deg); 
     }
   }
+}
+
+@theme dark {
+  --background: rgb(15 17 23); 
+  --foreground: rgb(250 250 250); 
+  
+  --primary: rgb(37 99 235); 
+  --primary-foreground: white;
+  
+  --secondary: rgb(30 32 38); 
+  --secondary-foreground: rgb(250 250 250); 
+  
+  --card: rgb(23 23 23); 
+  --card-foreground: rgb(245 245 245); 
+  
+  --popover: rgb(23 23 23); 
+  --popover-foreground: rgb(245 245 245); 
+  
+  --muted: rgb(38 38 38); 
+  --muted-foreground: rgb(163 163 163); 
+  
+  --accent: rgb(38 38 38); 
+  --accent-foreground: rgb(245 245 245); 
+  
+  --destructive: rgb(248 113 113); 
+  --destructive-foreground: rgb(250 250 250); 
+  
+  --border: rgb(38 38 38); 
+  --input: rgb(38 38 38); 
+  --ring: rgb(163 163 163); 
+}
+
+@layer utilities {
+  .bg-background { background-color: var(--background); }
+  .bg-foreground { background-color: var(--foreground); }
+  .bg-primary { background-color: var(--primary); }
+  .bg-secondary { background-color: var(--secondary); }
+  .bg-card { background-color: var(--card); }
+  .bg-popover { background-color: var(--popover); }
+  .bg-muted { background-color: var(--muted); }
+  .bg-accent { background-color: var(--accent); }
+  .bg-destructive { background-color: var(--destructive); }
+  
+  .text-background { color: var(--background); }
+  .text-foreground { color: var(--foreground); }
+  .text-primary { color: var(--primary); }
+  .text-primary-foreground { color: var(--primary-foreground); }
+  .text-secondary { color: var(--secondary); }
+  .text-secondary-foreground { color: var(--secondary-foreground); }
+  .text-card-foreground { color: var(--card-foreground); }
+  .text-popover-foreground { color: var(--popover-foreground); }
+  .text-muted-foreground { color: var(--muted-foreground); }
+  .text-accent-foreground { color: var(--accent-foreground); }
+  .text-destructive { color: var(--destructive); }
+  .text-destructive-foreground { color: var(--destructive-foreground); }
+  
+  .border-border { border-color: var(--border); }
+  .ring-ring { --tw-ring-color: var(--ring); }
+}
+
+body::-webkit-scrollbar { 
+  display: none; 
+}
+html, body, #root {
+  min-height: 100vh;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  margin: 0;
+  transition: background-color 0.3s, color 0.3s; 
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
 }
