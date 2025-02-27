@@ -69,7 +69,7 @@ const Sidebar = () => {
           <WorkspaceFileExplorer />
         </div>
       </div>
-      <div className="mt-auto border-t border-border p-3">
+      <div className="mt-auto border-t p-3">
         <div className="flex items-center gap-3 px-2 py-2">
           <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
             <span className="text-xs font-medium text-primary">US</span>

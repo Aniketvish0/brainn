@@ -1,108 +1,90 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
 
-@theme {
-  --background: rgb(250 250 250); 
-  --foreground: rgb(10 10 10); 
-  
-  --primary: rgb(59 130 246);  
-  --primary-foreground: white;
-  
-  --secondary: rgb(15 17 23); 
-  --secondary-foreground: white;
-  
-  --card: white;
-  --card-foreground: rgb(23 23 23); 
-  
-  --popover: white;
-  --popover-foreground: rgb(23 23 23); 
-  
-  --muted: rgb(245 245 245); 
-  --muted-foreground: rgb(115 115 115); 
-  
-  --accent: rgb(243 244 246);  
-  --accent-foreground: rgb(17 24 39); 
-  
-  --destructive: rgb(239 68 68); 
-  --destructive-foreground: white;
-  
-  --border: rgb(229 229 229); 
-  --input: rgb(229 229 229);  
-  --ring: rgb(23 23 23);  
+    --animate-spin-once: spin-once 0.5s ease-in-out;
+    @keyframes spin-once {
+      0% { transform: rotate(-90deg); }
+      100% { transform: rotate(0deg); }
+    }
+  }
 
-  --animate-spin-once: spin-once 0.5s ease-in-out;
-  @keyframes spin-once {
-    0% {
-      transform: rotate(-90deg); 
-    }
-    100% {
-      transform: rotate(0deg); 
-    }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
   }
 }
 
-@theme dark {
-  --background: rgb(15 17 23); 
-  --foreground: rgb(250 250 250); 
-  
-  --primary: rgb(37 99 235); 
-  --primary-foreground: white;
-  
-  --secondary: rgb(30 32 38); 
-  --secondary-foreground: rgb(250 250 250); 
-  
-  --card: rgb(23 23 23); 
-  --card-foreground: rgb(245 245 245); 
-  
-  --popover: rgb(23 23 23); 
-  --popover-foreground: rgb(245 245 245); 
-  
-  --muted: rgb(38 38 38); 
-  --muted-foreground: rgb(163 163 163); 
-  
-  --accent: rgb(38 38 38); 
-  --accent-foreground: rgb(245 245 245); 
-  
-  --destructive: rgb(248 113 113); 
-  --destructive-foreground: rgb(250 250 250); 
-  
-  --border: rgb(38 38 38); 
-  --input: rgb(38 38 38); 
-  --ring: rgb(163 163 163); 
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer utilities {
-  .bg-background { background-color: var(--background); }
-  .bg-foreground { background-color: var(--foreground); }
-  .bg-primary { background-color: var(--primary); }
-  .bg-secondary { background-color: var(--secondary); }
-  .bg-card { background-color: var(--card); }
-  .bg-popover { background-color: var(--popover); }
-  .bg-muted { background-color: var(--muted); }
-  .bg-accent { background-color: var(--accent); }
-  .bg-destructive { background-color: var(--destructive); }
-  
-  .text-background { color: var(--background); }
-  .text-foreground { color: var(--foreground); }
-  .text-primary { color: var(--primary); }
-  .text-primary-foreground { color: var(--primary-foreground); }
-  .text-secondary { color: var(--secondary); }
-  .text-secondary-foreground { color: var(--secondary-foreground); }
-  .text-card-foreground { color: var(--card-foreground); }
-  .text-popover-foreground { color: var(--popover-foreground); }
-  .text-muted-foreground { color: var(--muted-foreground); }
-  .text-accent-foreground { color: var(--accent-foreground); }
-  .text-destructive { color: var(--destructive); }
-  .text-destructive-foreground { color: var(--destructive-foreground); }
-  
-  .border-border { border-color: var(--border); }
-  .ring-ring { --tw-ring-color: var(--ring); }
+  .bg-foreground { background-color: hsl(var(--foreground)); }
+  .bg-primary { background-color: hsl(var(--primary)); }
+  .bg-secondary { background-color: hsl(var(--secondary)); }
+  .bg-card { background-color: hsl(var(--card)); }
+  .bg-popover { background-color: hsl(var(--popover)); }
+  .bg-muted { background-color: hsl(var(--muted)); }
+  .bg-accent { background-color: hsl(var(--accent)); }
+  .bg-destructive { background-color: hsl(var(--destructive)); }
+
+  .text-background { color: hsl(var(--background)); }
+  .text-foreground { color: hsl(var(--foreground)); }
+  .text-primary { color: hsl(var(--primary)); }
+  .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+  .text-secondary { color: hsl(var(--secondary)); }
+  .text-secondary-foreground { color: hsl(var(--secondary-foreground)); }
+  .text-card-foreground { color: hsl(var(--card-foreground)); }
+  .text-popover-foreground { color: hsl(var(--popover-foreground)); }
+  .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+  .text-accent-foreground { color: hsl(var(--accent-foreground)); }
+  .text-destructive { color: hsl(var(--destructive)); }
+  .text-destructive-foreground { color: hsl(var(--destructive-foreground)); }
+
+  .ring-ring { --tw-ring-color: hsl(var(--ring)); }
 }
 
 body::-webkit-scrollbar { 
   display: none; 
 }
+
 html, body, #root {
   min-height: 100vh;
   background-color: hsl(var(--background));
@@ -111,4 +93,126 @@ html, body, #root {
   transition: background-color 0.3s, color 0.3s; 
   -ms-overflow-style: none;  
   scrollbar-width: none;
+}
+
+.aurora-gradient {
+  background-image: linear-gradient(
+    to right,
+    hsl(var(--primary) / 0.8),
+    hsl(var(--destructive) / 0.8),
+    hsl(var(--primary) / 0.8)
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: aurora 8s linear infinite;
+}
+
+@keyframes aurora {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.dot-pattern {
+  mask-image: radial-gradient(circle at center, white, transparent);
+}
+
+:root {
+  --color-1: hsl(0 100% 63%);
+  --color-2: hsl(270 100% 63%);
+  --color-3: hsl(210 100% 63%);
+  --color-4: hsl(195 100% 63%);
+  --color-5: hsl(90 100% 63%);
+}
+
+.dark {
+  --color-1: hsl(0 100% 63%);
+  --color-2: hsl(270 100% 63%);
+  --color-3: hsl(210 100% 63%);
+  --color-4: hsl(195 100% 63%);
+  --color-5: hsl(90 100% 63%);
+}
+
+@theme inline {
+  --color-color-1: var(----color-1);
+  --color-color-2: var(----color-2);
+  --color-color-3: var(----color-3);
+  --color-color-4: var(----color-4);
+  --color-color-5: var(----color-5);
+
+  @keyframes aurora-border {
+    0%, 100% {
+      borderRadius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+    }
+    25% {
+      borderRadius: 47% 29% 39% 49% / 61% 19% 66% 26%;
+    }
+    50% {
+      borderRadius: 57% 23% 47% 72% / 63% 17% 66% 33%;
+    }
+    75% {
+      borderRadius: 28% 49% 29% 100% / 93% 20% 64% 25%;
+    }
+  }
+
+  @keyframes aurora-1 {
+    0%, 100% {
+      top: 0;
+      right: 0;
+    }
+    50% {
+      top: 50%;
+      right: 25%;
+    }
+    75% {
+      top: 25%;
+      right: 50%;
+    }
+  }
+
+  @keyframes aurora-2 {
+    0%, 100% {
+      top: 0;
+      left: 0;
+    }
+    60% {
+      top: 75%;
+      left: 25%;
+    }
+    85% {
+      top: 50%;
+      left: 50%;
+    }
+  }
+
+  @keyframes aurora-3 {
+    0%, 100% {
+      bottom: 0;
+      left: 0;
+    }
+    40% {
+      bottom: 50%;
+      left: 25%;
+    }
+    65% {
+      bottom: 25%;
+      left: 50%;
+    }
+  }
+
+  @keyframes aurora-4 {
+    0%, 100% {
+      bottom: 0;
+      right: 0;
+    }
+    50% {
+      bottom: 25%;
+      right: 40%;
+    }
+    90% {
+      bottom: 50%;
+      right: 25%;
+    }
+  }
 }
