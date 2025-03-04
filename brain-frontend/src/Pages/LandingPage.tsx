@@ -1,13 +1,13 @@
 import React from "react";
-import Navbar from "@/Components/Navbar";
+import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
-import { Button } from "@/Components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { ArrowRight, Brain, Globe, LayoutGrid, MessageSquareText, FileText, Tags, Zap } from "lucide-react";
 import { motion } from "framer-motion";
-import { TracingBeam } from "@/Components/magicui/tracing-beam";
-import { SparklesCore } from "@/Components/magicui/sparkles";
-import { BorderBeam } from "@/Components/magicui/border-beam";
-
+import { TracingBeam } from "@/components/magicui/tracing-beam";
+import { SparklesCore } from "@/components/magicui/sparkles";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { useNavigate } from "react-router-dom";
 // Define animations
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -107,6 +107,7 @@ const demoSteps = [
 ];
 
 const LandingPage: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="relative min-h-screen bg-slate-50 dark:bg-[#0f1117] ">
       <Navbar />

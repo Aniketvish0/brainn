@@ -1,15 +1,25 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ThemeProvider } from "./Components/Theme/ThemeProvider"
-import Home from "@/Pages/Home"
+import { ThemeProvider } from "./components/theme/ThemeProvider"
+import Home from "@/pages/Home"
 import { useState,useEffect } from "react";
-import Layout from "@/Pages/Layout";
+import Layout from "@/pages/Layout";
 import {Toaster} from "react-hot-toast";
-import LandingPage from "./Pages/LandingPage";
+import LandingPage from "./pages/LandingPage";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
 
 const router = createBrowserRouter([
     {
       path : '/',
-      element : <LandingPage/>
+      element : <LandingPage/>,
+    },
+    {
+      path : '/signup',
+      element : <Signup/>
+    },
+    {
+      path : '/login',
+      element : <Login/>
     },
     {
       path : '/dashboard',

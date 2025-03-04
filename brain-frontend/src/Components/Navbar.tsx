@@ -1,9 +1,11 @@
 import {Brain, Command, Menu} from 'lucide-react'
 import { Button } from './ui/Button'
 import { SearchInput } from './ui/SearchInput'
-import ThemeToggle from './Theme/ThemeToggle'
+import ThemeToggle from './theme/ThemeToggle'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+  const navigate = useNavigate(); 
   return (
     <header className="bg-transparent backdrop-blur-md border-b border-gray-200 dark:border-white/5 flex justify-between items-center top-0 sticky z-999 text-gray-800 dark:text-white py-4 md:px-10">
     <div className='flex items-center gap-2.5'>
@@ -31,7 +33,11 @@ const Navbar = () => {
           <Button variant="outline" className="border-gray-300 text-gray-700 hover:text-gray-900 hover:border-gray-400 dark:border-white/20 dark:text-gray-200 dark:hover:text-white dark:hover:border-white/40">
             Log in
           </Button>
-          <Button variant="default" className="bg-blue-600 hover:bg-blue-500 text-white dark:bg-blue-600 dark:hover:bg-blue-500">
+          <Button 
+            variant="default" 
+            className="bg-blue-600 hover:bg-blue-500 text-white dark:bg-blue-600 dark:hover:bg-blue-500"
+            onClick={() => navigate('/signup')}
+            >
             Sign up
           </Button>
         </div>

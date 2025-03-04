@@ -1,6 +1,6 @@
 import { BrainCircuit, Twitter, Youtube, FolderOpen, PanelLeftClose } from "lucide-react";
-import WorkspaceFileExplorer from "./Workspace/WorkspaceFileExplorer";
-import Separator from "@/Components/Workspace/Seperator";
+import WorkspaceFileExplorer from "./workspace/WorkspaceFileExplorer";
+import Separator from "@/components/ui/Seperator";
 import { useState } from "react";
 
 const Sidebar = () => {

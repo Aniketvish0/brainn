@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import { getRefreshToken } from "./user/get";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -46,9 +46,9 @@ axiosInstance.interceptors.response.use(
             
             originalRequest._retry = true;
             try {
-                // const response = await getRefreshToken();
-                // const {AUTH_TOKEN : accessToken } = response.data;
-                // originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+                const response = await getRefreshToken();
+                const {AUTH_TOKEN : accessToken } = response.data;
+                originalRequest.headers.Authorization = `Bearer ${accessToken}`;
                 return axiosInstance(originalRequest);
             } catch (error) {
                 return Promise.reject(error);
@@ -58,3 +58,4 @@ axiosInstance.interceptors.response.use(
     }
 
 )
+export default axiosInstance;
