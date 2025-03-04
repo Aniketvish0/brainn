@@ -5,7 +5,7 @@ import ThemeToggle from './Theme/ThemeToggle'
 
 const Navbar = () => {
   return (
-    <header className="bg-white/80 dark:bg-black/30 backdrop-blur-md border-b border-gray-200 dark:border-white/5 flex justify-between items-center top-0 sticky z-10 text-gray-800 dark:text-white py-4 md:px-10">
+    <header className="bg-transparent backdrop-blur-md border-b border-gray-200 dark:border-white/5 flex justify-between items-center top-0 sticky z-999 text-gray-800 dark:text-white py-4 md:px-10">
     <div className='flex items-center gap-2.5'>
       <Brain className='text-blue-600 dark:text-blue-500' size={24}/>
       <span className="font-semibold text-xl tracking-tight">Brainn</span>
