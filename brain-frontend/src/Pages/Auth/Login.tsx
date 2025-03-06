@@ -6,20 +6,22 @@ import { BorderBeam } from "@/components/magicui/border-beam";
 import { SparklesCore } from '@/components/magicui/sparkles';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '@/api/user/post';
+import toast from 'react-hot-toast';
+import { AxiosError } from 'axios';
 
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0},
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3
+      staggerChildren: 0.1,
+      delayChildren: 0.1
     }
   }
 };
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 1, opacity: 0},
   visible: {
     y: 0,
     opacity: 1,
@@ -28,20 +30,51 @@ const itemVariants = {
 };
 
 const Login: React.FC = () => {
-  const navigate = useNavigate();
   const [usernameoremail, setusernameoremail] = useState<string>("");
   const [password, setpassword] = useState<string>("");
-  const [islogging, setislogging] = useState<boolean>(false)
+  const [islogging, setislogging] = useState<boolean>(false);
+  const [errorMessage,seterrorMessage] = useState<string|null>(null);
+  const navigate = useNavigate();
 
-  const handlesubmit = async() => {
+  const handlesubmit = async(e : React.FormEvent) => {
+      e.preventDefault();
+      seterrorMessage(null);
+      if(!usernameoremail.trim() || !password.trim()){
+        seterrorMessage("Please enter both username and password");
+        toast.error(errorMessage);
+        return;
+      }
       try {
         setislogging(true);
         const response = await loginUser(usernameoremail,password);
+        if(response.data.success){
+          localStorage.setItem('accessToken',response.data.data.accessToken);
+          toast.success("Logged in Successfully");
+          setusernameoremail('');
+          setpassword('');
+          navigate('/dashboard');
+        }
         console.log(response);
-        setislogging(false);
       } catch (error) {
-        console.error(error);
-      }
+        if (error instanceof AxiosError) {
+          if (error.response) {
+            const errorMessage = error.response.data?.message 
+              || error.response.data?.error 
+              || 'Login failed. Please try again.';
+            seterrorMessage(errorMessage);
+          } else if (error.request) {
+            seterrorMessage('No response from server. Please check your connection.');
+          } else {
+            seterrorMessage('An unexpected error occurred during login.');
+          }
+        } else {
+          seterrorMessage('An unexpected error occurred.');
+        }
+        toast.error(errorMessage)
+        console.error('Login error:', error);
+      } finally {
+        setislogging(false);
+    }  
   }
   return (
     <div className="relative min-h-screen bg-slate-50 dark:bg-[#0f1117] ">
@@ -87,6 +120,8 @@ const Login: React.FC = () => {
           <motion.form 
             variants={itemVariants}
             className="space-y-3"
+            noValidate={true}
+            onSubmit={handlesubmit}
           >
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Username or Email</label>
@@ -95,10 +130,11 @@ const Login: React.FC = () => {
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg 
                            bg-white dark:bg-gray-900 
                            text-gray-900 dark:text-gray-100
-                           focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           focus:outline-none focus:ring-1 focus:ring-blue-900"
                 placeholder="you@example.com" 
                 value={usernameoremail}
                 onChange={(e) => setusernameoremail(e.target.value)}
+                disabled={islogging}
               />
             </div>
             
@@ -109,10 +145,11 @@ const Login: React.FC = () => {
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg 
                            bg-white dark:bg-gray-900 
                            text-gray-900 dark:text-gray-100
-                           focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           focus:outline-none focus:ring-1 focus:ring-blue-900"
                 placeholder="Enter your password" 
                 value={password}
-                onChange={(e)=>setpassword(e.target.value)}
+                onChange={(e) => setpassword(e.target.value)}
+                disabled={islogging}
               />
             </div>
             
@@ -126,10 +163,10 @@ const Login: React.FC = () => {
             </div>
             
             <Button 
-              className="w-full mt-4 group"
+              className="w-full mt-4 group hover:bg-gray-700/30"
               size="lg"
               variant="secondary"
-              onSubmit={handlesubmit}
+              disabled={islogging}
             >
               {islogging ? `Logging In...` : `Log In`}
             </Button>

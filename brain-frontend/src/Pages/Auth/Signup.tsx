@@ -5,28 +5,28 @@ import { Brain } from "lucide-react";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { useNavigate } from 'react-router-dom';
 import { SparklesCore } from '@/components/magicui/sparkles';
-import { signupUser } from '@/api/user/post';
+import { Signupdata, signupUser } from '@/api/user/post';
 import toast from 'react-hot-toast';
 
 const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0},
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
   
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+const itemVariants = {
+    hidden: { y: 1, opacity: 0},
     visible: {
       y: 0,
       opacity: 1,
       transition: { type: "spring", stiffness: 100 }
     }
-  };
+};
 
 const Signup: React.FC = () => {
     const navigate = useNavigate();
@@ -36,13 +36,12 @@ const Signup: React.FC = () => {
     const [username , setusername] = useState<string>("");
     const [issigningup,setissigningup] = useState<boolean>(false); 
     const [firstname, lastname] = fullname.trim().split(' ');
-    const signupdata  = {
+    const signupdata : Signupdata  = {
         firstname,
         lastname,
         username,
         email,
         password,
-      
     }
     const handlesubmit = async(e : React.FormEvent) =>{
         e.preventDefault();
@@ -92,21 +91,18 @@ const Signup: React.FC = () => {
                 Brainn
               </h1>
             </motion.div>
-            
             <motion.h2 
               variants={itemVariants}
               className="text-2xl font-bold py-4 text-center aurora-gradient"
             >
               Create Your Account
             </motion.h2>
-            
             <motion.form 
               variants={itemVariants}
               className="space-y-3"
             >
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                variants={itemVariants}
               >
                 <label className="block mb-1 text-sm font-normal text-gray-700 dark:text-gray-300">Full Name</label>
                 <input 
@@ -114,15 +110,14 @@ const Signup: React.FC = () => {
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg 
                              bg-white dark:bg-gray-900 
                              text-gray-900 dark:text-gray-100
-                             focus:outline-none focus:ring-2 focus:ring-blue-500"
+                             focus:outline-none focus:ring-1 focus:ring-blue-900"
                   placeholder="Enter your full name"
                   value={fullname}
                   onChange={(e) => setfullname(e.target.value)} 
                 />
               </motion.div>
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                variants={itemVariants}
               >
                 <label className="block mb-1 text-sm font-normal text-gray-700 dark:text-gray-300">Username</label>
                 <input 
@@ -130,13 +125,12 @@ const Signup: React.FC = () => {
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg 
                              bg-white dark:bg-gray-900 
                              text-gray-900 dark:text-gray-100
-                             focus:outline-none focus:ring-2 focus:ring-blue-500"
+                             focus:outline-none focus:ring-1 focus:ring-blue-900"
                   placeholder="Enter your full name"
                   value={username}
                   onChange={(e) => setusername(e.target.value)} 
                 />
               </motion.div>
-              
               <div>
                 <label className="block mb-1 text-sm font-normal text-gray-700 dark:text-gray-300">Email</label>
                 <input 
@@ -144,7 +138,7 @@ const Signup: React.FC = () => {
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg 
                              bg-white dark:bg-gray-900 
                              text-gray-900 dark:text-gray-100
-                             focus:outline-none focus:ring-2 focus:ring-blue-500"
+                             focus:outline-none focus:ring-1 focus:ring-blue-900"
                   placeholder="you@example.com" 
                   value={email}
                   onChange={(e)=>setemail(e.target.value)}
@@ -157,14 +151,14 @@ const Signup: React.FC = () => {
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg 
                              bg-white dark:bg-gray-900 
                              text-gray-900 dark:text-gray-100
-                             focus:outline-none focus:ring-2 focus:ring-blue-500"
+                             focus:outline-none focus:ring-1 focus:ring-blue-900"
                   placeholder="Create a strong password" 
                   value={password}
                   onChange={(e)=>setpassword(e.target.value)}
                 />
               </div>      
               <Button 
-                className="w-full my-6 group"
+                className="w-full my-6 group hover:bg-gray-700/30"
                 size="default"
                 variant="secondary"
                 onClick={handlesubmit}

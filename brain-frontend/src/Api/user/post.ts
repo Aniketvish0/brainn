@@ -1,13 +1,15 @@
 import axiosInstance from "../axios.config";
-interface Signupdata {
-    fullname : string
-    username: string, 
-    email: string,
+import { AxiosResponse } from "axios";
+export interface Signupdata {
+    firstname : string
+    lastname : string
+    username: string 
+    email: string
     password : string
 }
 export const signupUser = async(data : Signupdata) => {
     try{
-        const response = axiosInstance.post('/user/signup', data);
+        const response : AxiosResponse = await axiosInstance.post('/user/signup', data);
         console.log(response);
         return response;
     }catch(error : any){
@@ -22,7 +24,7 @@ export const signupUser = async(data : Signupdata) => {
 
 export const loginUser = async(usernameOrEmail: string , password : string) => {
     try {
-        const response = axiosInstance.post("/user/login",{
+        const response : AxiosResponse = await axiosInstance.post("/user/signin",{
             usernameOrEmail,
             password
         });
