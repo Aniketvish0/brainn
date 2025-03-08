@@ -33,12 +33,12 @@ const Addcontent: React.FC<AddContentProps> = ({onclose,type}) => {
     <div className="inset-0 fixed z-200 backdrop-blur-sm flex items-center justify-center">
         <div className="max-w-sm relative bg-muted px-3 pt-4 pb-8 text-center rounded-md">
             <X className="absolute right-4" onClick={onclose}/>
-        <h3 className="text-center font-bold text-2xl mb-8 pt-4">Add Twitter Node</h3>
+        <h3 className="text-center font-bold text-2xl mb-8 pt-4">{`Add ${type} Node`}</h3>
         <form className="space-y-4 px-6 relative">
-        <input className="bg-transparent w-full outline-none border-[1px] border-blue-400/20  focus:border-blue-300 text-white py-2 px-4 mx-1 rounded-md"  placeholder="Tweet title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input className="bg-transparent w-full outline-none border-[1px] border-blue-400/20  focus:border-blue-300 text-white py-2 px-4 mx-1 rounded-md"  placeholder="url" type="url" value={url} onChange={(e)=>setUrl(e.target.value)} />
+        <input className="bg-transparent w-full outline-none border-[1px] border-blue-400/20  focus:border-blue-300 text-white py-2 px-4 mx-1 rounded-md"  placeholder={`${type} title`} type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input className="bg-transparent w-full outline-none border-[1px] border-blue-400/20  focus:border-blue-300 text-white py-2 px-4 mx-1 rounded-md"  placeholder={`${type} url`} type="url" value={url} onChange={(e)=>setUrl(e.target.value)} />
         <input 
-            className="bg-transparent w-full outline-none border-[1px] border-blue-400/20  focus:border-blue-300 text-white py-2 px-4 mx-1 rounded-md"  
+            className="bg-transparent w-full outline-none border-[1px] border-blue-400/20  focus:border-blue-300 text-white py-2 px-4 mx-1 rounded-md"
             placeholder="#tags" 
             type="text" 
             value={tag} 

@@ -2,6 +2,7 @@ import { ClientTweetCard } from "@/components/ui/ClientTweetCard"
 import { getallcontent } from "@/api/content/get";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import YouTubeVideoCard from "@/components/ui/YouTubeVideoCard";
 
 
 interface ResponseData {
@@ -46,7 +47,11 @@ const Brain = () => {
             id={extractTweetId(content.url)} 
             className="max-w-80 h-50 outline-none border-0 dark:shadow-2xl shadow-lg overflow-auto no-scrollbar" 
           />): content.type == "video" ? (
-             <></>
+             <YouTubeVideoCard 
+               url={content.url} 
+               title={content.title}
+               className="max-w-80 max-h-50 h-full outline-none border-0 shadow-2xl"
+             />
           ):null
       ))
     } 

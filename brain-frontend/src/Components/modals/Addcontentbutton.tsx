@@ -85,7 +85,7 @@ const Addcontentbutton = () => {
       </motion.button>
     </div>
     {showaddtweet && <Addcontent onclose={()=>setShowaddTweet(false)} type="tweet"/>} 
-    {showaddytvideo && <Addcontent onclose={()=>setShowaddTweet(false)} type="video"/>} 
+    {showaddytvideo && <Addcontent onclose={()=>setShowaddytvideo(false)} type="video"/>} 
     </>
   );
 };
