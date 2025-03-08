@@ -31,7 +31,7 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 229, 41%, 11%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -85,6 +85,12 @@ body::-webkit-scrollbar {
   display: none; 
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  width: 1px;
+}
+.no-scrollbar {
+  scrollbar-width: 1px;  
+}
 html, body, #root {
   min-height: 100vh;
   background-color: hsl(var(--background));

@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "./components/theme/ThemeProvider"
-import Home from "@/pages/Home"
+import Home from "@/pages/Brain"
 import { useState,useEffect } from "react";
 import Layout from "@/pages/Layout";
 import {Toaster} from "react-hot-toast";

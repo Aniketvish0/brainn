@@ -105,11 +105,11 @@ const demoSteps = [
     image: "/api/placeholder/600/400"
   }
 ];
-
+// dark:bg-[#0f1117]
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <div className="relative min-h-screen bg-slate-50 dark:bg-[#0f1117] ">
+    <div className="relative min-h-screen bg-[#fefefe] dark:bg-[#17181c]">
       <Navbar />
       <div className="absolute inset-0 z-0 overflow-hidden">
         <SparklesCore

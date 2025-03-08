@@ -2,7 +2,7 @@ import { BrainCircuit, Twitter, Youtube, FolderOpen, PanelLeftClose } from "luci
 import Separator from "@/components/ui/Seperator";
 import { useState } from "react";
 import { motion } from "framer-motion";
-
+import clsx from "clsx";
 const sidebarVariants = {
   open: { width: "16rem", transition: { duration: 0.3, ease: "easeInOut" } },
   closed: { width: "3.5rem", transition: { duration: 0.3, ease: "easeInOut" } }
@@ -50,8 +50,15 @@ const Sidebar = () => {
               <li key={id}>
                 <button
                   onClick={() => setActiveItem(id)}
-                  className={`w-full flex items-center gap-3 px-1.5 cursor-pointer py-2.5 rounded-lg font-medium transition-colors 
-                    ${activeItem === id ? `${bg} ${color}` : "dark:text-white text-gray-700 hover:bg-accent"}`}
+                  className={clsx(
+                    "w-full flex items-center gap-3 px-1.5 cursor-pointer py-2.5 rounded-lg font-medium transition-colors",
+                    activeItem === id ? `${bg} ${color}` : "dark:text-white text-gray-700",
+                    {
+                      "hover:bg-primary/10": bg === "bg-primary/10",
+                      "hover:bg-blue-500/10": bg === "bg-blue-500/10",
+                      "hover:bg-red-500/10": bg === "bg-red-500/10",
+                    }
+                  )}
                 >
                   <Icon size={18} className={activeItem === id ? color : "text-muted-foreground"} />
                   <motion.span 
