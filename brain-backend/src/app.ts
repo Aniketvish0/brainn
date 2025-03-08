@@ -23,8 +23,10 @@ app.get("/api/v1/test",async (req: Request, res: Response) => {
 })
 import UserRouter from "./routes/user.route";
 import ContentRouter from "./routes/content.route";
+import workspaceRouter from "./routes/workspace.route";
 app.use("/api/v1/user",UserRouter);
 app.use("/api/v1/content",ContentRouter);
+app.use("/api/v1/workspace",workspaceRouter);
 
 
 export default app;

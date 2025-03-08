@@ -3,5 +3,5 @@ import { Document } from 'mongoose';
 import { IUser } from '../../models/user.model';
 
 export interface AuthRequest extends Request {
-    user?: Document<unknown, {}, IUser> & IUser;
+    user?: Document<unknown, {}, IUser> & IUser & Required<{ _id: unknown; }> & { __v: number; }
 }

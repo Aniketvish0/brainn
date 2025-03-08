@@ -18,7 +18,7 @@ const WorkspaceSchema = new Schema<IWorkspace>({
     name: { type: String, required: true },
     description: { type: String },
     icon: { type: String },
-    parentWorkspace: { type: Schema.Types.ObjectId, ref: 'Workspace' },
+    parentWorkspace: { type: Schema.Types.ObjectId || null, ref: 'Workspace' , default : "null"},
     settings: {
       isPrivate: { type: Boolean, default: true },
       defaultTags: [String],

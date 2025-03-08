@@ -7,10 +7,10 @@ import { Workspace } from '../models/workspace.model';
 import { Tag } from '../models/tag.model';
 import { SearchHistory } from '../models/searchHistory.model';
 import User from '../models/user.model';
-import { getReadingTime } from '../utils/ContentUtils/Readingtime';
-import { fetchUrlMetadata } from '../utils/ContentUtils/getmetadata/url';
-import { getTweetMetadata } from '../utils/ContentUtils/getmetadata/tweet';
-import { getVideoMetadata } from '../utils/ContentUtils/getmetadata/yt';
+// import { getReadingTime } from '../utils/contentUtils/Readingtime';
+// import { fetchUrlMetadata } from '../utils/contentUtils/getmetadata/url';
+// import { getTweetMetadata } from '../utils/contentUtils/getmetadata/tweet';
+// import { getVideoMetadata } from '../utils/contentUtils/getmetadata/yt';
 import { Types } from 'mongoose';
 import { ApiResponse } from '../utils/ApiResponse';
 
@@ -84,7 +84,7 @@ const handleCreateContent = asyncHandler(async (req: AuthRequest, res: Response)
     type: ContentType;
     content?: string;
     title: string;
-    workspace: string;
+    workspace?: string;
     url?: string;
     tags: string[];
   };
@@ -92,26 +92,22 @@ const handleCreateContent = asyncHandler(async (req: AuthRequest, res: Response)
   
   const user = await User.findById(userId);
   if (!user) throw new ApiError(401, "No user found");
-
-
-  const workspaceExists = await Workspace.findById(workspace);
-  if (!workspaceExists) throw new ApiError(404, "Workspace not found");
   
   try {
     const urlOrContent = url || content;
     if (!urlOrContent) throw new ApiError(400, "Content or URL is required");
     
     // const metadata = await metadataHandlers[type](urlOrContent, userId as string);
-
+    const defaultWorkspaceObjectID = await Workspace.findOne({name:"default"});
     const brainContent = await Content.create({
       type,
-      content,
+      content : content || "",
       title,
-      workspace,
+      workspace : workspace || defaultWorkspaceObjectID?._id,
       userId,
       tags,
-      url: url || null,
-    //   metadata,
+      url: url || "",
+      //   metadata,
       stats: {
         views: 0,
         importance: 0,
@@ -146,17 +142,35 @@ const handleCreateContent = asyncHandler(async (req: AuthRequest, res: Response)
 });
 
 
-const handleUpdateContent = asyncHandler(async (req:AuthRequest, res : Response) => {
+// const handleUpdateContent = asyncHandler(async (req:AuthRequest, res : Response) => {
 
-    try{
+//     try{
 
-    }catch(error){
+//     }catch(error){
 
-    }
+//     }
+// })
+
+const handleGetAllcontent = asyncHandler(async (req:AuthRequest, res:Response)=> {
+      try {
+        const userId = req?.user?._id;
+        const userExists = await User.findById(userId);
+        if(!userExists){
+          throw new ApiError(404,"No user found");
+        }
+        const allusercontent = await Content.find({
+          userId : userId
+        })
+        res.status(200).json(new ApiResponse(200,allusercontent,"All user content fetched successfully"));
+      } catch (error : any) {
+        throw new ApiError(
+          error.statusCode || 500,
+          error.message || "Error while fetching all content of user"
+        )
+      }
 })
 
-
 export { 
-    handleCreateContent ,
-    handleUpdateContent
+    handleCreateContent,
+    handleGetAllcontent
 };
