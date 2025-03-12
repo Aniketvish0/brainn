@@ -5,7 +5,6 @@ import { ApiError } from '../utils/ApiError';
 import Content from '../models/content.model'; 
 import { Workspace } from '../models/workspace.model';
 import { Tag } from '../models/tag.model';
-import { SearchHistory } from '../models/searchHistory.model';
 import User from '../models/user.model';
 // import { getReadingTime } from '../utils/contentUtils/Readingtime';
 // import { fetchUrlMetadata } from '../utils/contentUtils/getmetadata/url';
@@ -13,6 +12,7 @@ import User from '../models/user.model';
 // import { getVideoMetadata } from '../utils/contentUtils/getmetadata/yt';
 import { Types } from 'mongoose';
 import { ApiResponse } from '../utils/ApiResponse';
+import { getYoutubeTranscript } from '../scripts/yt-dlp/youtubeTranscript';
 
 
 type ContentType = 'link' | 'video' | 'tweet' | 'note' | 'document';
@@ -132,7 +132,16 @@ const handleCreateContent = asyncHandler(async (req: AuthRequest, res: Response)
         Tag.incrementUsage(tag, new Types.ObjectId(userId as string))
     ));
 
-    res.status(201).json(new ApiResponse(201,{brainContent : brainContent},"Content created sucessfully"))
+    res.status(201).json(new ApiResponse(201,{brainContent : brainContent},"Content created sucessfully"));
+    console.log("Test log for yt-dlp");
+    let transcript ;
+
+    if(type === "video"){
+      transcript = await getYoutubeTranscript({videoUrl : url as string});
+      brainContent.content = transcript as string;
+      await brainContent.save();
+    }
+
   } catch (error: any) {
     throw new ApiError(
       error.statusCode || 500,
