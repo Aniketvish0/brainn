@@ -4,10 +4,10 @@ import { promisify } from 'util';
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseVttToJson } from './subtitleFormat/vttToJson';
-import { parseVttToCleanText } from './subtitleFormat/vttToCleanText';
 import { isValidVideoId, getYoutubeId } from '../../utils/contentUtils/Getytid';
 import { cleanupFiles } from './other/cleanupFiles';
 import { parseVttToPlainText } from './subtitleFormat/vttToText';
+import { parseVttToCleanText } from './subtitleFormat/vttToCleanText';
 const execPromise = promisify(exec);
 
 interface TranscriptOptions {

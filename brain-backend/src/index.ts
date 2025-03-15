@@ -1,4 +1,4 @@
-import connectDB from "./config/db";
+import connectDB from "./config/mongo.db";
 import dotenv from "dotenv";
 dotenv.config();
 import app from "./app";
