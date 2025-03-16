@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
   const navigate = useNavigate(); 
   return (
-    <header className="bg-transparent backdrop-blur-md border-b border-gray-200 dark:border-white/5 flex justify-between items-center top-0 sticky z-999 text-gray-800 dark:text-white py-4 md:px-10">
+    <header className="bg-transparent backdrop-blur-md border-b border-gray-200 dark:border-white/5 flex justify-between items-center top-0 sticky z-[40] isolate text-gray-800 dark:text-white py-4 md:px-10">
     <div className='flex items-center gap-2.5'>
       <Brain className='text-blue-600 dark:text-blue-500' size={24}/>
       <span className="font-semibold text-xl tracking-tight">Brainn</span>

@@ -1,7 +1,8 @@
-import { NotebookPen, PlusIcon, Twitter, Youtube } from "lucide-react";
+import { NotebookPen, PlusIcon, Twitter, Youtube, Link2Icon} from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Addcontent from "./Addcontent";
+import AddTweetOrVideo from "./AddTweetOrVideo";
+import AddNote from "./Addnote";
 
 
 const Addcontentbutton = () => {
@@ -9,7 +10,8 @@ const Addcontentbutton = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [showaddtweet, setShowaddTweet] = useState<boolean>(false);
   const [showaddytvideo, setShowaddytvideo] = useState<boolean>(false);
-  
+  const [showaddnote, setShowaddnote] = useState<boolean>(false);
+  const [showaddweblink, setShowaddweblink] = useState<boolean>(false);
   useEffect(() => {
     const handleClickOutside = (event : MouseEvent ) => {
       if (menuRef.current && !menuRef?.current?.contains(event.target as Node)) {
@@ -20,8 +22,12 @@ const Addcontentbutton = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleaddweblink = () => {
+    setShowaddweblink(true);
+  }
   const handleaddnote = () => {
-    
+    setShowaddnote(true);
   }
 
   const handleaddtweet = () => {
@@ -34,7 +40,9 @@ const Addcontentbutton = () => {
   const contentButtons = [
     { id: "note", icon: NotebookPen, label: "Add Notes", color: "text-white", bg: "bg-primary/20" , onclick: handleaddnote },
     { id: "twitter", icon: Twitter, label: "Add Tweets", color: "text-blue-500", bg: "bg-blue-500/5" , onclick : handleaddtweet},
-    { id: "youtube", icon: Youtube, label: "Add Videos", color: "text-red-500", bg: "bg-red-500/5" , onclick : handleaddytvideo}
+    { id: "youtube", icon: Youtube, label: "Add Videos", color: "text-red-500", bg: "bg-red-500/5" , onclick : handleaddytvideo},
+    { id: "web", icon: Link2Icon, label: "Add Website link", color: "text-sky-500", bg: "bg-sky-500/5" , onclick : handleaddweblink},
+    
   ];
   return (
     <>
@@ -84,8 +92,10 @@ const Addcontentbutton = () => {
         <PlusIcon size={28} />
       </motion.button>
     </div>
-    {showaddtweet && <Addcontent onclose={()=>setShowaddTweet(false)} type="tweet"/>} 
-    {showaddytvideo && <Addcontent onclose={()=>setShowaddytvideo(false)} type="video"/>} 
+    {showaddtweet && <AddTweetOrVideo onclose={()=>setShowaddTweet(false)} type="tweet"/>} 
+    {showaddytvideo && <AddTweetOrVideo onclose={()=>setShowaddytvideo(false)} type="video"/>}
+    {showaddweblink && <AddTweetOrVideo onclose={()=>setShowaddweblink(false)} type="web"/>}
+    {showaddnote && <AddNote onClose={() => setShowaddnote(false)} />}
     </>
   );
 };

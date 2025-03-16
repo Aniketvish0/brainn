@@ -1,7 +1,7 @@
 import {Outlet} from "react-router-dom"
 import Navbar from "@/components/Navbar"
 import Sidebar from "@/components/Sidebar"
-import Addcontent from "@/components/modals/Addcontentbutton"
+import Addcontentbutton from "@/components/modals/Addcontentbutton"
 
 const Layout = () => {
   return (
@@ -11,7 +11,7 @@ const Layout = () => {
         <Sidebar />
         <div className="flex-1 overflow-auto p-4 bg-gray-50 dark:bg-[#1b1c21] z-0">
           <Outlet />
-          <Addcontent />
+          <Addcontentbutton />
         </div>
       </main>
     </div>

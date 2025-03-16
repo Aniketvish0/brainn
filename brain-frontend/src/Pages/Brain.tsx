@@ -3,6 +3,7 @@ import { getallcontent } from "@/api/content/get";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import YouTubeVideoCard from "@/components/ui/YouTubeVideoCard";
+import RenderMarkdown from "@/components/MarkdownNotes/RenderMarkdown";
 
 
 interface ResponseData {
@@ -52,7 +53,9 @@ const Brain = () => {
                title={content.title}
                className="max-w-80 max-h-50 h-full outline-none border-0 shadow-2xl"
              />
-          ):null
+          ): content.type == "note" ? (
+              <RenderMarkdown content={content.content ?? ""} title={content.title} tags={content.tags}/>
+          ): null
       ))
     } 
     </div>

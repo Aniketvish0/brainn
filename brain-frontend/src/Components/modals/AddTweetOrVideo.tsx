@@ -6,10 +6,10 @@ import { addContent } from "@/api/content/post";
 import toast from "react-hot-toast";
 
 interface AddContentProps {
-    type: string,
+    type: "video" | "tweet" | "web",
     onclose: () => void;
 }
-const Addcontent: React.FC<AddContentProps> = ({onclose,type}) => {
+const AddTweetOrVideo: React.FC<AddContentProps> = ({onclose,type}) => {
     const [title, setTitle] = useState<string>("");
     const [url,setUrl] = useState<string>("");
     const [tags,setTags] = useState<string[]>([]);
@@ -77,4 +77,4 @@ const Addcontent: React.FC<AddContentProps> = ({onclose,type}) => {
   )
 }
 
-export default Addcontent
+export default AddTweetOrVideo

@@ -39,18 +39,21 @@ function App() {
     setLoading(false);
   }, []);
 
+  if(loading)
+     return <h1>Loading.....</h1>;
+
   return (
     <>
      <ThemeProvider>
        <div className="min-h-screen">
           <Toaster
-            position="bottom-right"
+            position="top-right"
             toastOptions={{
               duration : 3000,
               style : {
                 background : 'bg-neutral-950',
                 color : 'bg-white',
-                borderRadius : '1%'
+                borderRadius : '5px'
               }
             }}
           />

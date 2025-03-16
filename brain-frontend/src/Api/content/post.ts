@@ -2,9 +2,10 @@ import axiosInstance from "../axios.config"
 import { AxiosResponse } from "axios";
 interface addcontetdata {
     type : string,
-    url: string,
+    url?: string,
     tags : string[],
     title : string,
+    content? : string
 }
 export const addContent = async(data:addcontetdata) => {
     try {
