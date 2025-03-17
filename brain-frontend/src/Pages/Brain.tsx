@@ -3,7 +3,7 @@ import { getallcontent } from "@/api/content/get";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import YouTubeVideoCard from "@/components/ui/YouTubeVideoCard";
-import RenderMarkdown from "@/components/MarkdownNotes/RenderMarkdown";
+import RenderMarkdown from "@/components/markdownNotes/RenderMarkdown";
 
 
 interface ResponseData {
