@@ -1,11 +1,8 @@
 export function cleanYouTubeTranscript(text: string): string {
   let cleaned = text.replace(/^Language:\s*[a-z]{2,3}\s*/i, '');
-  
-  // Split the text into sentences/phrases to work with
   const phrases = [];
   let currentPosition = 0;
-  
-  // Tokenize the text into phrases for processing
+
   while (currentPosition < cleaned.length) {
     // Try to find a phrase that repeats exactly 3 times
     const foundPattern = findTripleRepetitionPattern(cleaned, currentPosition);
@@ -27,8 +24,6 @@ export function cleanYouTubeTranscript(text: string): string {
       }
     }
   }
-  
-  // Join the phrases, making sure to preserve appropriate spacing
   return phrases.join(' ').replace(/\s+/g, ' ').trim();
 }
 

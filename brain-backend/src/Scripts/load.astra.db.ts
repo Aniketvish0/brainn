@@ -1,6 +1,6 @@
 import { DataAPIClient } from "@datastax/astra-db-ts";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter"
 import "dotenv/config";
 import * as fs from "fs";
 type SimilarityMatrics = "dot_product" | "cosine" | "euclidean";

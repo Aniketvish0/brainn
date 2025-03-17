@@ -13,9 +13,9 @@ import User from '../models/user.model';
 import { Types } from 'mongoose';
 import { ApiResponse } from '../utils/ApiResponse';
 import { getYoutubeTranscript } from '../scripts/yt-dlp/youtubeTranscript';
+import { scrapePage } from '../scripts/web/scrapePage';
 
-
-type ContentType = 'link' | 'video' | 'tweet' | 'note' | 'document';
+type ContentType = 'web' | 'video' | 'tweet' | 'note' | 'document';
 
 // const metadataHandlers: Record<ContentType, (urlOrContent: string, userId: string) => Promise<IMetadata>> = {
 //   link: async (urlOrContent: string, userId: string) => {
@@ -133,15 +133,19 @@ const handleCreateContent = asyncHandler(async (req: AuthRequest, res: Response)
     ));
 
     res.status(201).json(new ApiResponse(201,{brainContent : brainContent},"Content created sucessfully"));
-    console.log("Test log for yt-dlp");
     let transcript ;
-
     if(type === "video"){
       transcript = await getYoutubeTranscript({videoUrl : url as string});
       brainContent.content = transcript as string;
       await brainContent.save();
     }
-
+    if(type == "web"){
+      const webcontent = await scrapePage(url as string);
+      console.log(webcontent);
+      brainContent.content = webcontent;
+      await brainContent.save();
+    }
+    
   } catch (error: any) {
     throw new ApiError(
       error.statusCode || 500,

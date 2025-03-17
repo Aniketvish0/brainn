@@ -100,7 +100,7 @@ const ContentSchema = new Schema<IContent>({
   type: { 
     type: String, 
     required: true, 
-    enum: ['link', 'tweet', 'video', 'note', 'document'] 
+    enum: ['web', 'tweet', 'video', 'note', 'document'] 
   },
   content: { type: String },
   url: { type: String },
