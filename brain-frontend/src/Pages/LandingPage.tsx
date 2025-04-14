@@ -7,8 +7,6 @@ import { motion } from "framer-motion";
 import { TracingBeam } from "@/components/magicui/tracing-beam";
 import { SparklesCore } from "@/components/magicui/sparkles";
 import { BorderBeam } from "@/components/magicui/border-beam";
-import { useNavigate } from "react-router-dom";
-// Define animations
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -34,7 +32,6 @@ const fadeInVariants = {
   visible: { opacity: 1, transition: { duration: 0.6 } }
 };
 
-// Feature card data
 const features = [
   {
     title: "Save Anything",
@@ -87,7 +84,6 @@ const testimonials = [
   }
 ];
 
-// Demo steps data
 const demoSteps = [
   {
     title: "Save content from anywhere",
@@ -107,7 +103,6 @@ const demoSteps = [
 ];
 // dark:bg-[#0f1117]
 const LandingPage: React.FC = () => {
-  const navigate = useNavigate();
   return (
     <div className="relative min-h-screen bg-[#fefefe] dark:bg-[#17181c]">
       <Navbar />

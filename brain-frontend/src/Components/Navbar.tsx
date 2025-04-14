@@ -30,7 +30,11 @@ const Navbar = () => {
         <ThemeToggle />
         
         <div className="flex gap-2.5">
-          <Button variant="outline" className="border-gray-300 text-gray-700 hover:text-gray-900 hover:border-gray-400 dark:border-white/20 dark:text-gray-200 dark:hover:text-white dark:hover:border-white/40">
+          <Button
+             variant="outline" 
+             className="border-gray-300 text-gray-700 hover:text-gray-900 hover:border-gray-400 dark:border-white/20 dark:text-gray-200 dark:hover:text-white dark:hover:border-white/40"
+             onClick={() => navigate('/login')}
+             >
             Log in
           </Button>
           <Button 
