@@ -46,8 +46,6 @@ const Navbar = () => {
           </Button>
         </div>
       </div>
-      
-      {/* Mobile menu button */}
       <button className="md:hidden text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
         <Menu size={24} />
       </button>
