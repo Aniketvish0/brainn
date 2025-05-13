@@ -1,0 +1,46 @@
+{
+  "name": "brain-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "dev": "pnpm run build && pnpm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.8",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.8",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@datastax/astra-db-ts": "^1.5.0",
+    "@google/generative-ai": "^0.21.0",
+    "@langchain/community": "^0.3.35",
+    "@langchain/core": "^0.3.42",
+    "@types/cheerio": "^0.22.35",
+    "@types/node": "^22.13.10",
+    "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
+    "cheerio": "^1.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "langchain": "^0.3.18",
+    "mongoose": "^8.10.1",
+    "prettier": "^3.5.1",
+    "puppeteer": "^24.4.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "uuid": "^11.0.5",
+    "zod": "^3.24.2"
+  }
+}
